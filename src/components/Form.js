@@ -1,9 +1,14 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+
+import actions from '../actions/actions';
 
 const Form = ({ author = '', rate = 0, comment = '', id, callback}) => {
     const [ authorInput, setAuthorInput] = useState('');
     const [ rateInput, setRateInput] = useState(0);
     const [ commentInput, setCommentInput] = useState('');
+
+    const dispatch = useDispatch();
 
     const handleChangeAuthor = e => setAuthorInput(e.target.value)
 
@@ -21,7 +26,7 @@ const Form = ({ author = '', rate = 0, comment = '', id, callback}) => {
             id,
         }
 
-        id ? console.log('Edytuj komentarz') : console.log('Dodaj komentarz')
+        id ? dispatch(actions.editRates(rateObject)) : dispatch(actions.addRates(rateObject))
 
         if(id) {
             callback();
