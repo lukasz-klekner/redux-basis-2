@@ -1,6 +1,21 @@
 import types from '../types';
 
-const ratesReducer = (state=[], action) => {
+const INITIAL_STATE = [
+    {
+        author: 'Lukasz Klekner',
+        comment: 'Lubie Twoje ksiazki!',
+        rate: 5,
+        id: 1,
+    },
+    {
+        author: 'Mateusz',
+        comment: 'Lubie Twoje ksiazki!',
+        rate: 5,
+        id: 2,
+    },
+]
+
+const ratesReducer = (state = INITIAL_STATE, action) => {
     switch(action.type){
         case types.ADD_RATES:
             return [
@@ -29,7 +44,9 @@ const ratesReducer = (state=[], action) => {
 
 
         default:
-            return state;
+            return [
+                ...state
+            ];
     }
 }
 
